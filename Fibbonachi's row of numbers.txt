@@ -1,0 +1,31 @@
+#include<iostream>
+#include<fstream>
+#include<ctime>
+#include<string>
+#include<iomanip>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "Rus");
+	srand(time(NULL));
+	cout <<right<<setw(10)<< "Вывод ряда чисел Фиббоначи" << endl;
+	ofstream fout;
+	int n;
+	cout << "Введите до какого числа будет продолжаться ряд чисел" << endl;
+	cin >> n;
+	int a = 0;
+	int b = 1;
+	int c;
+	fout.open("FibbNum.txt");
+	for (int i = 0; i < n; i++)
+	{	
+		c = a + b;
+		cout << c << " ";
+		fout << c << endl;
+		a = b;
+		b = c;
+	}
+	fout.close();
+	system("pause");
+}
