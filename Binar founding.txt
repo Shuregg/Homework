@@ -1,0 +1,101 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+	int n;
+	int f;
+
+	cout << "Size of Massive:" << endl;
+	cin >> n;
+	if (n < 1)
+	{
+		cout << "Error! Size of massive smaller than 1! Please, try again." << endl;
+		system("pause");
+		return 0;
+	}
+	cout << "Your number:" << endl;
+	cin >> f;
+	if (f % 8 != 0)
+	{
+		cout << "Not found" << endl;
+		system("pause");
+		return 0;
+	}
+	float* mas = new float[n];
+	mas[0] = 8;
+	for (int i = 1; i < n; i++)
+	{
+		mas[i] = mas[i - 1] * 2;
+
+	}
+
+	if (f > mas[n - 1])
+	{
+		cout << "Not found" << endl;
+		system("pause");
+		return 0;
+	}
+	int left = 0;
+	int right = n - 1;
+	int mid = (left + right) / 2;
+	
+	if (mas[mid] == f)
+	{
+		cout << "Number: " << f << endl;
+		cout << "Position: " << mid << " (From 0 till " << n - 1 << ")" << endl;
+		system("pause");
+		return 0;
+	}
+	
+		
+	while (mas[mid] != f)
+	{
+
+
+		if (mas[mid] < f)
+		{
+			left = mid;
+			mid = (right + left) / 2;
+			if (f == mas[mid])
+			{
+				cout << "Number: " << f << endl;
+				cout << "Position: " << mid << " (From 0 till " << n - 1 << ")" << endl;
+				break;
+			}
+			if (mid == right - 1 && mas[right] == f )
+			{
+				mid = right;
+				cout << "Number: " << f << endl;
+				cout << "Position: " << mid << " (From 0 till " << n - 1 << ")" << endl;
+				break;
+			}
+		}
+		if (mas[mid] > f)
+		{
+			right = mid;
+			mid = (right + left) / 2;
+			
+			if (f == mas[mid])
+			{
+				cout << "Number: " << f << endl;
+				cout << "Position: " << mid << " (From 0 till " << n - 1 << ")" << endl;
+				break;
+			}
+			if (mid == right - 1 && mas[right] == f)
+			{
+				mid = right;
+				cout << "Number: " << f << endl;
+				cout << "Position: " << mid << " (From 0 till " << n - 1 << ")" << endl;
+				break;
+			}
+
+		}
+
+	}
+
+	system("pause");
+	return 0;
+}
