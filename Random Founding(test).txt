@@ -1,0 +1,140 @@
+#include<iostream>
+#include<ctime>
+using namespace std;
+void print(float* m, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << m[i] << " ";
+	}
+	cout << endl;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+	srand(time(NULL));
+	int n;
+	int f;
+
+	cout << "Size of Massive:" << endl;
+	cin >> n;
+	if (n < 1)
+	{
+		cout << "Error! Size of massive smaller than 1! Please, try again." << endl;
+		system("pause");
+		return 0;
+	}
+	cout << endl;
+	cout << "Your number:" << endl;
+	cin >> f;
+	cout << endl;
+
+
+	float* mas = new float[n];
+
+	for (int i = 0; i < n; i++)
+	{
+		mas[i] = rand() % 100;
+	}
+
+
+	for (int i = 0; i < n-1; i++)
+	{
+		for (int j = 0; j < n-1; j++)
+		{
+			if (mas[j - 1] > mas[j])
+			{
+				swap(mas[j], mas[j - 1]);
+			}
+		}
+	}
+	cout << endl;
+	cout << endl;
+	print(mas, n);
+	int count = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (mas[i] == f)
+		{
+			count++;
+		}
+	}
+	if (count < 1)
+	{
+		cout << "Not found!" << endl;
+		system("pause");
+		return 0;
+	}
+	
+	
+
+	system("pause");
+
+	if (f > mas[n - 1])
+	{
+		cout << "Not found" << endl;
+		system("pause");
+		return 0;
+	}
+	int left = 0;
+	int right = n - 1;
+	int mid = (left + right) / 2;
+	
+	if (mas[mid] == f)
+	{
+		cout << "Number: " << f << endl;
+		cout << "Position: " << mid << " (From 0 till " << n - 1 << ")" << endl;
+		system("pause");
+		return 0;
+	}
+	
+		
+	while (mas[mid] != f)
+	{
+
+
+		if (mas[mid] < f)
+		{
+			left = mid;
+			mid = (right + left) / 2;
+			if (f == mas[mid])
+			{
+				cout << "Number: " << f << endl;
+				cout << "Position: " << mid << " (From 0 till " << n - 1 << ")" << endl;
+				break;
+			}
+			if (mid == right - 1 && mas[right] == f )
+			{
+				mid = right;
+				cout << "Number: " << f << endl;
+				cout << "Position: " << mid << " (From 0 till " << n - 1 << ")" << endl;
+				break;
+			}
+		}
+		if (mas[mid] > f)
+		{
+			right = mid;
+			mid = (right + left) / 2;
+			
+			if (f == mas[mid])
+			{
+				cout << "Number: " << f << endl;
+				cout << "Position: " << mid << " (From 0 till " << n - 1 << ")" << endl;
+				break;
+			}
+			if (mid == right - 1 && mas[right] == f)
+			{
+				mid = right;
+				cout << "Number: " << f << endl;
+				cout << "Position: " << mid << " (From 0 till " << n - 1 << ")" << endl;
+				break;
+			}
+
+		}
+
+	}
+
+	system("pause");
+	return 0;
+}
