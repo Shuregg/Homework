@@ -1,0 +1,119 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<vector>
+#include<ctime>
+using namespace std;
+
+struct woman
+{
+	string name;
+	int age;
+	bool married;
+};
+struct child
+{
+	string mother;
+	string name;
+	int yearofborn;
+	bool sex;
+};
+
+void complement(woman lady)
+{
+	if (lady.age >= 45)
+	{
+		cout << lady.name << ", you look great for your " << lady.age << " years!" << endl;
+	}
+	if (lady.age < 25)
+	{
+		cout << lady.name << ", you look mature for your " << lady.age << " years!" << endl;
+	}
+	if (lady.age > 24 && lady.age < 45)
+	{
+		cout << lady.name << ", you look wonderful today!" << endl;
+	}
+}
+
+void returnchild(woman lady)
+{
+
+	vector<child> children;
+	ofstream fout;
+	cout << lady.name << endl;
+		int count = 0;
+		if (lady.age < 18)
+		{
+			cout << "This girl younger than 18 years old!" << endl;
+			count++;
+		}
+		if (lady.married == 0)
+		{
+			cout << "Warning! This woman is single!" << endl;
+			count++;
+		}
+		if (count == 0)
+		{
+			cout << "This woman can educate her child without excess troubles." << endl << endl << endl;
+		}
+		if (count == 1)
+		{
+			cout << "This woman should not to give birth to her child!" << endl<< endl << endl;
+		}
+		if (count == 2)
+		{
+			cout << "This woman must not to give birth to her child!!!" << endl << endl << endl;
+		}
+		
+		if (count <= 1)
+		{
+			fout.open(lady.name+"'s Child.txt");
+			child borned;
+			borned.mother = lady.name;
+			cout << "Child's name:" << endl;
+			cin >> borned.name;
+			cout << "Child's year of born:" << endl;
+			cin >> borned.yearofborn;
+			cout << "Child's sex (1 - boy / 0 - girl):" << endl;
+			cin >> borned.sex;
+			fout << borned.mother << "   " << borned.name << "   " << borned.yearofborn << "   " << borned.sex << endl;
+
+		}
+		else
+		{
+			fout << lady.name << " has no children." << endl;
+		}
+		fout.close();
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+	ifstream fin;
+	vector<woman> list;
+	
+	fin.open("Women.txt");
+	if (fin.is_open())
+	{
+		while (!fin.eof())
+		{
+			woman lady;
+			fin >> lady.name;
+			fin >> lady.age;
+			fin >> lady.married;
+			list.push_back(lady);
+			complement(lady);
+			returnchild(lady);
+		}
+		fin.close();
+	}
+	else
+	{
+		cout << "Computer can't open this file!" << endl;
+		system("pause");
+		return 0;
+	}
+	
+	
+	system("pause");
+}
