@@ -1,0 +1,98 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+	
+	int f;
+
+	cout << "Size of Massive:" << endl;
+
+
+	cout << "Your number:" << endl;
+	cin >> f;
+	float* mas = new float[20];
+	mas[0] = 8;
+	mas[1] = 14;
+	mas[2] = 26;
+	mas[3] = 28;
+	mas[4] = 38;
+	mas[5] = 47;
+	mas[6] = 56;
+	mas[7] = 60;
+	mas[8] = 64;
+	mas[9] = 69;
+	mas[10] = 70;
+	mas[11] = 78;
+	mas[12] = 80;
+	mas[13] = 82;
+	mas[14] = 84;
+	mas[15] = 87;
+	mas[16] = 90;
+	mas[17] = 92;
+	mas[18] = 98;
+	mas[19] = 108;
+
+	int left = 0;
+	int right = 19;
+	int mid = (left + right) / 2;
+	if ((left + right) % 2 != 0)
+	{
+		mid = ((left + right) / 2) - 0.5;
+	}
+
+	if (mas[mid] == f)
+	{
+		cout << "Number: " << f << endl;
+		cout << "Position: " << mid << " (From 0 till " <<19 << ")" << endl;
+		system("pause");
+		return 0;
+	}
+	
+	int a = 0;
+	while (a != 1)
+	{
+
+
+		if (mas[mid] < f)
+		{
+			left = mid;
+			mid = (right + left) / 2;
+			if ((left + right) % 2 != 0)
+			{
+				mid = ((left + right) / 2) - 0.5;
+			}
+			if (f == mas[mid])
+			{
+				cout << "Number: " << f << endl;
+				cout << "Position: " << mid << " (From 0 till " << 19 << ")" << endl;
+				a = 1;
+				break;
+			}
+
+		}
+		if (mas[mid] > f)
+		{
+			right = mid;
+			mid = (right + left) / 2;
+			if ((left + right) % 2 != 0)
+			{
+				mid = ((left + right) / 2) - 0.5;
+			}
+			if (f == mas[mid])
+			{
+				cout << "Number: " << f << endl;
+				cout << "Position: " << mid << " (From 0 till " << 19 << ")" << endl;
+				a = 1;
+				break;
+			}
+
+		}
+
+	}
+
+	system("pause");
+	return 0;
+}

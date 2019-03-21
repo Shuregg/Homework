@@ -1,0 +1,130 @@
+#include<iostream>
+#include<vector>
+#include<string>
+
+using namespace std;
+
+class Cake
+{
+private:
+	string consist;
+	bool cooked;
+	int weight;
+public:
+	Cake()
+	{
+		consist = "";
+		cooked = 0;
+		weight = 0;
+	}
+	Cake(string f, bool c, int w)
+	{
+		consist = f;
+		cooked = c;
+		weight = w;
+	}
+	void Show()
+	{
+		cout << consist << " " << cooked << " " << weight << endl;
+	}
+	
+	///
+	///
+	///
+
+	void Eat()
+	{
+		if (cooked == 1)
+		{
+			cout << "The cake was eaten." << endl;
+		}
+		else
+		{
+			cout << "The cake was not cooked!" << endl;
+		}
+	}
+
+	///
+	///
+	///
+
+	string GetConsist()
+	{
+		return consist;
+	}
+	void SetConsist(string f)
+	{
+		if (cooked == 0)
+		{
+			consist = f;
+		}
+		else
+		{
+			cout << "You can not edit cake's consist after cooking!" << endl;
+		}
+	}
+
+	///
+	///
+	///
+
+	bool GetCooked()
+	{
+		return cooked;
+	}
+	void Cook()
+	{
+		if (cooked == 0)
+		{
+			cooked = 1;
+			cout << "The cake was cooked." << endl;
+		}
+		else
+		{
+			cout << "The cake was already cooked!" << endl;
+		}
+	}
+
+	///
+	///
+	///
+
+	int GetWeignt()
+	{
+		return weight;
+	}
+	void SetWeight(int w, Cake sweet)
+	{
+		if (sweet.cooked == 0)
+		{
+			weight = w;
+		}
+		else
+		{
+			cout << "You can not edit cake's weight after cooking!" << endl;
+		}
+	}
+};
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+	Cake candy;
+	candy.SetConsist("Cream");
+	candy.SetWeight(350, candy);
+
+	candy.Show();
+	candy.Eat();
+	candy.Cook();
+	candy.Show();
+	candy.Eat();
+	candy.SetConsist("Cream");
+	candy.SetWeight(350, candy);
+
+	candy.Show();
+
+
+
+	system("pause");
+	return 0;
+}

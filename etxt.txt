@@ -1,0 +1,32 @@
+/*
+					int n;
+					int id;
+					string model;
+					int yearofpass;
+					string color;
+					string category;
+					int price;
+					int used;
+					cout << "How many cars do You want to delete?" << endl;
+					cin >> n;
+					for (int i = 0; i < n; i++)
+					{
+						cout << "Vehicle's ID (If this step does not matter - write 0):" << endl;
+						cin >> id;
+						cout << "Vehicle's Mark (If this step does not matter - write 0):" << endl;
+						getline(cin, model);
+						cout << "Vehicle's year of pass (If this step does not matter - write 0):" << endl;
+						cin >> yearofpass;
+						cout << "Vehicle's color (If this step does not matter - write 0):" << endl;
+						cin >> color;
+						cout << "Vehicle's category(sport/heavy/light) (If this step does not matter - write 0):" << endl;
+						cin >> category;
+						cout << "Vehicle's Price $ (If this step does not matter - write 0):" << endl;
+						cin >> price;
+						cout << "Is vehicle used? (1/0) (If this step does not matter - write -):" << endl;
+						cin >> used;
+					}
+					
+					if (id != 0 || model[0] != '0' || yearofpass != 0 || color[0] != '0' || category[0] != '0' || price != 0 || used != -1)
+					{
+						*/

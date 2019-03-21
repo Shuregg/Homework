@@ -1,0 +1,264 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<Windows.h>
+
+#include<fstream>
+#include<iomanip>
+
+using namespace std;
+
+struct car
+{
+	int id;
+	string mark;
+	string category;
+	float price;
+	string color;
+	int year;
+	bool old;
+};
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+
+	vector<car> list;
+	ifstream fin;
+
+	/*
+	int n;
+	cout << "Size of game list:" << endl;
+	cin >> n;
+	for (int i = 0; i < n; i++)
+	{
+		game sample;
+		cout << "Id:" << endl;
+		cin >> sample.id;
+		cout << "Mark:" << endl;
+		cin >> sample.mark;
+		cout << "Year of pass:" << endl;
+		cin >> sample.year;
+		cout << "Color:" << endl;
+		cin >> sample.color;
+		cout << "Category:" << endl;
+		cin >> sample.category;
+		cout << "Price:" << endl;
+		cin >> sample.price;
+		cout << "Used (1/0):" << endl;
+		cin >> sample.old;
+
+		list.push_back(sample);
+
+	}
+	*/
+	fin.open("input.txt");
+	if (fin.is_open())
+	{
+		while (!fin.eof())
+		{
+			car sample;
+			fin >> sample.id;
+			fin >> sample.mark;
+			fin >> sample.year;
+			fin >> sample.color;
+			fin >> sample.category;
+			fin >> sample.price;
+			fin >> sample.old;
+			list.push_back(sample);
+		}
+		fin.close();
+	}
+	else
+	{
+		cout << "Computer can't open this file" << endl;
+		return 0;
+	}
+	/*
+	cout << left << setw(10) << "Name:" << setw(10) << "Genre:" << setw(10) << "Weight (GB):" << setw(10) << "Year of pass:" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << left << setw(10) << list[i].id << setw(10) << list[i].mark << setw(10) << list[i].year << setw(10) << list[i].color << setw(10) << list[i].category << setw(10) << list[i].price << setw(10) << list[i].old << endl;
+	}
+	*/
+	int answer = -1;
+	while (answer != 0)
+	{
+			cout << endl;
+			cout << endl;
+			cout << "ÌÅÍÞ" << endl;
+			cout << endl;
+			cout << "1.Print" << endl;
+			cout << "2.Add the vehicle" << endl;
+			cout << "3.Delete the vehicle id/category" << endl;
+			cout << "4.Category information" << endl;
+			cout << "5.Save carlist in a file" << endl;
+			cout<<"6.Sort by year of pass" << endl;
+			cout << "7.Cost information" << endl;
+			
+			cout << "0.Âûõîä " << endl;
+		cin >> answer;
+		switch (answer)
+		{
+				case 1:
+				{
+					for (int i = 0; i < list.size(); i++)
+					{
+						cout << left << setw(10) << list[i].id << setw(10) << list[i].mark << setw(10) << list[i].year << setw(10) << list[i].color << setw(10) << list[i].category << setw(10) << list[i].price << setw(10) << list[i].old << endl;
+					}
+					break;
+				}
+				case 2:
+				{
+					car sample;
+					cout << "Id:" << endl;
+					cin >> sample.id;
+					cout << "Mark:" << endl;
+					cin >> sample.mark;
+					cout << "Year of pass:" << endl;
+					cin >> sample.year;
+					cout << "Color:" << endl;
+					cin >> sample.color;
+					cout << "Category:" << endl;
+					cin >> sample.category;
+					cout << "Price:" << endl;
+					cin >> sample.price;
+					cout << "Used (1/0):" << endl;
+					cin >> sample.old;
+
+					list.push_back(sample);
+					break;
+				}
+				case 3:
+				{
+					int n;
+					int id;
+					string model;
+					int yearofpass;
+					string color;
+					string category;
+					int price;
+					int used;
+					cout << "How many cars do You want to delete?" << endl;
+					cin >> n;
+					for (int i = 0; i < n; i++)
+					{
+						cout << "Vehicle's ID (If this step does not matter - write 0):" << endl;
+						cin >> id;
+						cout << "Vehicle's Mark (If this step does not matter - write 0):" << endl;
+						getline(cin, model);
+						cout << "Vehicle's year of pass (If this step does not matter - write 0):" << endl;
+						cin >> yearofpass;
+						cout << "Vehicle's color (If this step does not matter - write 0):" << endl;
+						cin >> color;
+						cout << "Vehicle's category(sport/heavy/light) (If this step does not matter - write 0):" << endl;
+						cin >> category;
+						cout << "Vehicle's Price $ (If this step does not matter - write 0):" << endl;
+						cin >> price;
+						cout << "Is vehicle used? (1/0) (If this step does not matter - write 2):" << endl;
+						cin >> used;
+					}
+					if (id != 0 || model[0] != '0' || yearofpass != 0 || color[0] != '0' || category[0] != '0' || price != 0 || used != 2)
+					{
+						for (int i = 0; i < list.size(); i++)
+						{
+							int choise = -1;
+							switch (choise)
+							{
+								case 1:
+								{
+									if (list[i].id == id)
+									{
+										list.erase(list.begin() + i);
+
+									}
+								}
+							}
+							
+						}
+					}	
+					else
+					{
+						cout << "Good bye!" << endl;
+						system("pause");
+						break;
+					}
+					
+					break;
+				}
+				case 4:
+				{
+					string cat;
+					cout << "Write category (sport/heavy/light):" << endl;
+					cin >> cat;
+					for (int i = 0; i < list.size(); i++)
+					{
+						if (list[i].category == cat)
+						{
+							cout << left << setw(10) << list[i].id << setw(10) << list[i].mark << setw(10) << list[i].year << setw(10) << list[i].color << setw(10) << list[i].category << setw(10) << list[i].price << setw(10) << list[i].old << endl;
+						}
+					}
+					break;
+				}
+				case 5:
+				{
+					ofstream fout;
+					fout.open("output.txt");
+					for (int i = 0; i < list.size(); i++)
+					{
+						fout << left << setw(10) << list[i].id << setw(10) << list[i].mark << setw(10) << list[i].year << setw(10) << list[i].color << setw(10) << list[i].category << setw(10) << list[i].price << setw(10) << list[i].old << endl;
+					}
+					fout.close();
+					break;
+				}
+				case 6:
+				{
+					for (int i = 0; i < list.size() - 1; i++)
+					{
+						for (int j = 0; j < list.size() - 1; j++)
+						{
+							if (list[i].year > list[i + 1].year)
+							{
+								swap(list[i], list[i + 1]);
+							}
+						}
+					}
+					break;
+				}
+
+				case 7:
+				{
+					int maxcost;
+					int count = 0;
+					cout << "Write max cost" << endl;
+					cin >> maxcost;
+					for (int i = 0; i < list.size(); i++)
+					{
+						if (list[i].price <= maxcost)
+						{
+							cout << left << setw(10) << list[i].id << setw(10) << list[i].mark << setw(10) << list[i].year << setw(10) << list[i].color << setw(10) << list[i].category << setw(10) << list[i].price << setw(10) << list[i].old << endl;
+							count++;
+						}
+						
+					}
+					if (count == 0)
+					{
+						cout << "Not found!" << endl;
+						break;
+					}
+					break;
+				}
+				default:
+				{
+					cout << "Error! Please, try again!" << endl;
+					break;
+				}
+		}
+	}
+
+
+
+
+	system("pause");
+	return 0;
+}
