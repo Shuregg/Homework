@@ -1,0 +1,301 @@
+#include<iostream>
+#include<ctime>
+#include<conio.h>
+using namespace std;
+
+class Game
+{
+private:
+	int field[3][3];
+	bool player;
+	bool end;
+
+public:
+	Game()
+	{
+		field[3][3];
+		player = 0;
+		end = 0;
+	}
+	void FieldCreate()
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				field[i][j] = -1;
+			}
+			cout << endl;
+		}
+	}
+	void Show()
+	{
+		cout << " 1  2  3" << endl;
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				if (field[i][j] == -1)
+				{
+					
+					cout << "|_|";
+					if (i == 0 && j == 2)
+					{
+						cout << " A";
+					}
+					if (i == 1 && j == 2)
+					{
+						cout << " B";
+					}
+					if (i == 2 && j == 2)
+					{
+						cout << " C";
+					}
+				}
+				if (field[i][j] == 0)
+				{
+					cout << "|o|";
+				}
+				if (field[i][j] == 1)
+				{
+					cout << "|x|";
+				}
+			}
+			cout << endl;
+		}
+	}
+	int GetEnd()
+	{
+		return end;
+	}
+	int GetPlayer()
+	{
+		return player;
+	}
+	void SetPlayer(bool p)
+	{
+		if (p == 0 || p == 1)
+		{
+			player = p;
+		}
+	}
+	int GetFieldPos(int x, int y)
+	{
+		return field[y][x];
+	}
+	int SetFieldPos(bool value)
+	{
+		if (value == false)
+		{
+			cout << "First player's move! (O)" << endl;
+		}
+		else
+		{
+			cout << "Second player's move! (X)" << endl;
+		}
+		int x;
+		int y;
+		cout << "Choose a column (1/2/3)" << endl;
+		cin >> x;
+		if (x < 1 || x > 3)
+		{
+			cout << "Wrong value. Please, try again!" << endl;
+			return -1;
+		}
+		else
+		{
+			x--;
+		}
+
+		cout << "Choose a row! (A/B/C)" << endl;
+		char row;
+		cin >> row;
+		if (row != 'a' && row != 'A' && row != 'b' && row != 'B' && row != 'c' && row != 'C')
+		{
+			cout << "Wrong value. Please, try again!" << endl;
+			return -1;
+		}
+		else
+		{
+
+			if (row == 'a' || row == 'A')
+			{
+				y = 0;
+			}
+			if (row == 'b' || row == 'B')
+			{
+				y = 1;
+			}
+			if (row == 'c' || row == 'C')
+			{
+				y = 2;
+			}
+		}
+		if (GetFieldPos(x, y) == -1)
+		{
+			field[y][x] == value;
+		}
+		else
+		{
+			cout<<"This place already occuped"<<endl;
+			return -1;
+		}
+
+	}
+	int win(bool p)
+	{
+		if (GetFieldPos(0, 0) == p && GetFieldPos(0, 1) == p && GetFieldPos(0, 2) == p)
+		{
+			if (p == true)
+			{
+				cout << "The second player won!" << endl;
+				end = true;
+				return end;
+			}
+			else
+			{
+				cout << "The first player won!" << endl;
+				end = true;
+				return end;
+			}
+		}
+		if (GetFieldPos(1, 0) == p && GetFieldPos(1, 1) == p && GetFieldPos(1, 2) == p)
+		{
+			if (p == true)
+			{
+				cout << "The second player won!" << endl;
+				end = true;
+				return end;
+			}
+			else
+			{
+				cout << "The first player won!" << endl;
+				end = true;
+				return end;
+			}
+		}
+		if (GetFieldPos(2, 0) == p && GetFieldPos(2, 1) == p && GetFieldPos(2, 2) == p)
+		{
+			if (p == true)
+			{
+				cout << "The second player won!" << endl;
+				end = true;
+				return end;
+			}
+			else
+			{
+				cout << "The first player won!" << endl;
+				end = true;
+				return end;
+			}
+		}
+		if (GetFieldPos(0, 0) == p && GetFieldPos(1, 0) == p && GetFieldPos(2, 0) == p)
+		{
+			if (p == true)
+			{
+				cout << "The second player won!" << endl;
+				end = true;
+				return end;
+			}
+			else
+			{
+				cout << "The first player won!" << endl;
+				end = true;
+				return end;
+			}
+		}
+		if (GetFieldPos(0, 1) == p && GetFieldPos(1, 1) == p && GetFieldPos(2, 1) == p)
+		{
+			if (p == true)
+			{
+				cout << "The second player won!" << endl;
+				end = true;
+				return end;
+			}
+			else
+			{
+				cout << "The first player won!" << endl;
+				end = true;
+				return end;
+			}
+		}
+		if (GetFieldPos(0, 2) == p && GetFieldPos(1, 2) == p && GetFieldPos(2, 2) == p)
+		{
+			if (p == true)
+			{
+				cout << "The second player won!" << endl;
+				end = true;
+				return end;
+			}
+			else
+			{
+				cout << "The first player won!" << endl;
+				end = true;
+				return end;
+			}
+		}
+		if (GetFieldPos(2, 0) == p && GetFieldPos(1, 1) == p && GetFieldPos(0, 2) == p)
+		{
+			if (p == true)
+			{
+				cout << "The second player won!" << endl;
+				end = true;
+				return end;
+			}
+			else
+			{
+				cout << "The first player won!" << endl;
+				end = true;
+				return end;
+			}
+		}
+		if (GetFieldPos(0, 0) == p && GetFieldPos(1, 1) == p && GetFieldPos(2, 2) == p)
+		{
+			if (p == true)
+			{
+				cout << "The second player won!" << endl;
+				end = true;
+				return end;
+			}
+			else
+			{
+				cout << "The first player won!" << endl;
+				end = true;
+				return end;
+			}
+		}
+		
+	}
+	
+
+};
+
+
+
+int main()
+{
+	srand(time(NULL));
+	Game Cross;
+
+	Cross.FieldCreate();
+	bool value = 0;
+	while (Cross.GetEnd() != true)
+	{
+
+		system("cls");
+		Cross.Show();
+		Cross.SetFieldPos(value);
+		if (Cross.SetFieldPos(value) == -1)
+		{
+			for (int i = 0; Cross.SetFieldPos(value) != -1; i++)
+			{
+				Cross.SetFieldPos(value);
+			}
+		}
+		Cross.win(Cross.GetPlayer());
+		Cross.SetPlayer(!Cross.GetPlayer());
+	}
+
+	system("pause");
+	return 0;
+}

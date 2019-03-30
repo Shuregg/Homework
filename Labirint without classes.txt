@@ -1,0 +1,126 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<conio.h>
+using namespace std;
+
+
+void main()
+{
+	//setlocale(LC_ALL, "Rus");
+	int labirint[20][20] =
+	{
+		{1,0,0,0,1,0,1,1,1,0,1,1,1,1,1,3,1,1,1,1},
+		{1,0,1,1,0,6,0,1,0,6,0,1,1,1,0,0,0,1,1,1},
+		{1,0,0,0,1,0,1,1,1,0,1,1,1,0,0,1,0,0,1,1},
+		{1,1,0,1,1,0,1,1,1,0,1,1,0,0,1,1,1,0,0,1},
+		{1,1,0,1,1,0,0,0,0,0,1,1,0,1,1,1,1,1,0,1},
+		{1,0,4,0,0,4,1,1,1,1,1,0,0,0,0,0,1,1,4,1},
+		{1,1,0,4,4,0,1,0,0,1,1,1,0,1,1,0,1,1,1,1},
+		{1,1,1,1,1,1,1,0,1,0,0,1,0,0,1,0,1,0,0,1},
+		{1,0,4,0,0,1,1,0,1,0,1,1,0,1,1,0,1,1,0,1},
+		{1,0,1,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1},
+		{1,0,1,1,1,1,1,1,0,1,1,0,0,1,1,4,0,1,0,1},
+		{1,0,0,1,1,1,1,0,0,1,1,0,1,1,1,1,0,1,0,1},
+		{1,1,0,0,0,1,0,0,1,1,0,0,0,1,1,1,1,1,0,1},
+		{1,4,0,1,0,1,0,1,1,0,0,1,0,0,0,1,4,0,0,1},
+		{1,0,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1},
+		{1,1,0,2,0,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1},
+		{1,1,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1},
+		{1,0,0,0,1,1,0,1,1,0,1,1,0,1,0,1,1,1,1,1},
+		{1,0,0,4,0,0,0,5,1,0,1,4,0,0,0,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+
+	};
+	int key;
+	int pers_i = 15;
+	int pers_j = 3;
+	int score = 0;
+	int character = 1;
+	while (true)
+	{
+		system("cls");
+		for (int i = 0; i < 20; i++)
+		{
+			for (int j = 0; j < 20; j++)
+			{
+
+				if (labirint[i][j] == 1)
+				{
+					cout << static_cast<char>(178);
+					cout << static_cast<char>(178);
+				}
+				if (labirint[i][j] == 0 || labirint[i][j] == 5 || labirint[i][j] == 6)
+				{
+					cout << " ";
+					cout << " ";
+				}
+				if (labirint[i][j] == 2)
+				{
+					cout << static_cast<char>(28);
+					cout << static_cast<char>(character);
+				}
+				if (labirint[i][j] == 3)
+				{
+					cout << " ";
+					cout << static_cast<char>(127);
+				}
+				if (labirint[i][j] == 4)
+				{
+					cout << " ";
+					cout << static_cast<char>(15);
+				}
+
+			}
+			cout << endl;
+		}
+		cout << endl << endl;
+		cout << "Score: " << score << endl;
+		labirint[pers_i][pers_j] = 0;
+		key = _getch();
+		if (key == 72 || key == 150 || key == 230) //up
+			pers_i = pers_i - 1;
+
+		if (key == 80 || key == 155 || key == 235) //down
+			pers_i = pers_i + 1;
+
+		if (key == 77 || key == 130 || key == 262) //right
+			pers_j = pers_j + 1;
+
+		if (key == 75 || key == 148 || key == 235) //left
+			pers_j = pers_j - 1;
+		if (key == 57)
+			character++;
+		if (key == 48)
+			character--;
+
+		if (labirint[pers_i][pers_j] == 1)
+		{
+			cout << "Game over!" << endl;
+			break;
+		}
+		if (labirint[pers_i][pers_j] == 3)
+		{
+			cout << "Finish!" << endl;
+			break;
+		}
+		if (labirint[pers_i][pers_j] == 4)
+		{
+			score++;
+		}
+		if (labirint[pers_i][pers_j] == 5)
+		{
+			pers_i = 0;
+			pers_j = 1;
+		}
+		if (labirint[pers_i][pers_j] == 6)
+		{
+			pers_i = 17;
+			pers_j = 6;
+		}
+		labirint[pers_i][pers_j] = 2;
+
+
+	}
+	system("pause");
+}
