@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+struct Point
+{
+	float x;
+	float y;
+};
+float length(Point a, Point b)
+{
+	Point d;
+
+	d.x = a.x;
+	d.y = b.y;
+
+	float AC, BC;
+	AC = a.y - d.y;
+	BC = b.x - d.x;
+	float answer = sqrt(AC * AC + BC * BC);
+	return answer;
+}
+
+void main()
+{
+	setlocale(LC_ALL, "Rus");
+	Point a, b, D;
+	cout << "Введите координаты 1-ой точки Прямой (X, Y)." << endl;
+	cin >> a.x >> a.y;
+	cout << "Введите координаты 2-ой точки Прямой (X, Y)." << endl;
+	cin >> b.x >> b.y;
+	cout << "Введите координаты отдельной точки (X, Y)." << endl;
+	cin >> D.x >> D.y;
+
+	if (length(a, D) + length(b, D) == length(a, b))
+	{
+		cout << "Точка принадлежит отрезку!" << endl;
+	}
+	else
+	{
+		cout << "Точка не принадлежит отрезку." << endl;
+	}
+	
+	system("pause");
+}
